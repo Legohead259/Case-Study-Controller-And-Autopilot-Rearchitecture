@@ -20,14 +20,27 @@
 #define DEBOUNCE_TIME_MS 50 // Used to mitigate noisy switch inputs in software, rather than use a hardware lowpass filter
 #define BUTTON_INPUT_PIN 7 // The Arduino pin connected to the button input
 
-struct Button {
+class Button {
+    public:
     // Settable properties
     uint8_t pin;
     bool swDebounce = true; // Toggle if the button uses internal software debounce or not. Default: true
     bool activeState = LOW; // The button state in which we want to activate the functionality. E.g. LOW if the button is configured as an active low. Default: LOW
     void (*callback)(); // The action we want the button the do as a function
 
+    void poll() {
+        _reading = digitalRead(pin);
+        if (swDebounce && !_debounce()) { // Enable and enact software debouncing
+            _lastState = _reading; // Set last button state and exit
+        }
+        else if (_reading == activeState) { // If swDebounce is FALSE or the software debounce time has passed and the button is in the active state
+            if (callback != nullptr) callback(); // execute the callback
+            _lastState = _reading; // Set last button state and exit
+        }
+    }
+
     // Internal properties
+    private:
     bool _reading;
     bool _currentState;
     bool _lastState;
@@ -47,17 +60,6 @@ struct Button {
             }
         }
         return false;
-    }
-
-    void poll() {
-        _reading = digitalRead(pin);
-        if (swDebounce && !_debounce()) { // Enable and enact software debouncing
-            _lastState = _reading; // Set last button state and exit
-        }
-        else if (_reading == activeState) { // If swDebounce is FALSE or the software debounce time has passed and the button is in the active state
-            if (callback != nullptr) callback(); // execute the callback
-            _lastState = _reading; // Set last button state and exit
-        }
     }
 };
 
