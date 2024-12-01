@@ -1,11 +1,11 @@
 /**
- * button_inputs.ino
+ * @file button_inputs.ino
  * 
- * Author: Braidan Duffy <braidan.duffy@gmail.com>
- * Created on: 24 November 2024
+ * @author: Braidan Duffy <braidan.duffy@gmail.com>
+ * @date: 24 November 2024
  * Modified on: [DATE_MODIFIED] by: [MODIFIER]
  * 
- * This script is an example for encapsulating a button input using Arduino.
+ * @brief This script is an example for encapsulating a button input using Arduino.
  * We start by define a button structure or object and the rest of the system variables.
  * We then define system callbacks that the buttons will enact when pressed.
  * In this example, the button will toggle an LED.
@@ -14,7 +14,7 @@
  * Disclaimer: At this time, this code is not tested on hardware. USE AT YOUR OWN RISK. 
  * Please report bugs to the author.
  * 
- * Version 0.1.0
+ * @version 0.1.0
  */
 
 #define DEBOUNCE_TIME_MS 50 // Used to mitigate noisy switch inputs in software, rather than use a hardware lowpass filter
