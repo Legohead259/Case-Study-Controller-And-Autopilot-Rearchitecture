@@ -8,6 +8,9 @@
  * @brief A demonstration of using the TimerEvents class to do the basic Arduino
  * blink script
  * 
+ * Depends on https://github.com/Legohead259/Timer-Events-Arduino being downloaded or cloned
+ * into the Arduino/sketchbook/libraries directory.
+ *
  * License: MIT
  * Disclaimer: At this time, this code is not tested on hardware. USE AT YOUR OWN RISK. 
  * Please report bugs to the author.
