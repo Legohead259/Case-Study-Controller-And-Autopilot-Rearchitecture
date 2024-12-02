@@ -1,0 +1,3 @@
+[submodule "applications/ESP-Now-Controller"]
+	path = applications/ESP-Now-Controller
+	url = https://github.com/Legohead259/ESP-Now-Controller
